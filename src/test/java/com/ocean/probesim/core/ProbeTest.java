@@ -2,6 +2,9 @@ package com.ocean.probesim.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProbeTest {
@@ -149,6 +152,21 @@ class ProbeTest {
         probe.moveForward();
         assertEquals(0, probe.getX());
         assertEquals(2, probe.getY());
+    }
+
+    //Visited Coordinates Tracking
+    @Test
+    void shouldTrackVisitedCoordinates() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(1, 1, Direction.NORTH, grid);
+
+        probe.moveForward(); // (1,2)
+        probe.turnRight();   // EAST
+        probe.moveForward(); // (2,2)
+
+        List<String> expected = List.of("1,1", "1,2", "2,2");
+
+        assertEquals(expected, probe.getVisitedCoordinates());
     }
 
 }
