@@ -45,4 +45,11 @@ public class Probe {
         }
     }
 
+    public void turnLeft() {
+        // stub
+    }
+
+    public void turnRight() {
+        // stub
+    }
 }
