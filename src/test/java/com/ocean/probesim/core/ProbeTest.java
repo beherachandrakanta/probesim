@@ -51,4 +51,36 @@ class ProbeTest {
         assertEquals(1, probe.getY());
     }
 
+    @Test
+    void shouldMoveBackwardWhenFacingNorth() {
+        Probe probe = new Probe(2, 2, Direction.NORTH);
+        probe.moveBackward();
+        assertEquals(2, probe.getX());
+        assertEquals(1, probe.getY());
+    }
+
+    @Test
+    void shouldMoveBackwardWhenFacingEast() {
+        Probe probe = new Probe(2, 2, Direction.EAST);
+        probe.moveBackward();
+        assertEquals(1, probe.getX());
+        assertEquals(2, probe.getY());
+    }
+
+    @Test
+    void shouldMoveBackwardWhenFacingSouth() {
+        Probe probe = new Probe(2, 2, Direction.SOUTH);
+        probe.moveBackward();
+        assertEquals(2, probe.getX());
+        assertEquals(3, probe.getY());
+    }
+
+    @Test
+    void shouldMoveBackwardWhenFacingWest() {
+        Probe probe = new Probe(2, 2, Direction.WEST);
+        probe.moveBackward();
+        assertEquals(3, probe.getX());
+        assertEquals(2, probe.getY());
+    }
+
 }
