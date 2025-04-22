@@ -6,6 +6,9 @@ public class Grid {
     private final int height;
 
     public Grid(int width, int height) {
+        if (width < 0 || height < 0) {
+            throw new IllegalArgumentException("Grid dimensions must be non-negative");
+        }
         this.width = width;
         this.height = height;
     }
