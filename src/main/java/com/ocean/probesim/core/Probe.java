@@ -46,10 +46,20 @@ public class Probe {
     }
 
     public void turnLeft() {
-        // stub
+        switch (direction) {
+            case NORTH -> direction = Direction.WEST;
+            case WEST  -> direction = Direction.SOUTH;
+            case SOUTH -> direction = Direction.EAST;
+            case EAST  -> direction = Direction.NORTH;
+        }
     }
 
     public void turnRight() {
-        // stub
+        switch (direction) {
+            case NORTH -> direction = Direction.EAST;
+            case EAST  -> direction = Direction.SOUTH;
+            case SOUTH -> direction = Direction.WEST;
+            case WEST  -> direction = Direction.NORTH;
+        }
     }
 }
