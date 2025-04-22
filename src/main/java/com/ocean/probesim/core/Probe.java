@@ -1,5 +1,6 @@
 package com.ocean.probesim.core;
 
+import com.ocean.probesim.model.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Probe {
     private int y;
     private Direction direction;
     private final Grid grid;
-    private final List<String> visitedCoordinates = new ArrayList<>();
+    private final List<Position> visitedCoordinates = new ArrayList<>();
 
     public Probe(int x, int y, Direction direction, Grid grid) {
         if (!grid.isValidPosition(x, y)) {
@@ -78,11 +79,44 @@ public class Probe {
     }
 
     public List<String> getVisitedCoordinates() {
-        return new ArrayList<>(visitedCoordinates);
+        List<String> stringCoords = new ArrayList<>();
+        for (Position pos : visitedCoordinates) {
+            stringCoords.add(pos.getX() + "," + pos.getY());
+        }
+        return stringCoords;
+    }
+
+    public String getSummary() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Final Position: (")
+                .append(x).append(", ")
+                .append(y).append(") facing ")
+                .append(direction.name()).append("\n");
+
+        sb.append("Visited: [");
+        for (int i = 0; i < visitedCoordinates.size(); i++) {
+            Position pos = visitedCoordinates.get(i);
+            sb.append("(").append(pos.getX()).append(", ").append(pos.getY()).append(")");
+            if (i < visitedCoordinates.size() - 1) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     private void recordPosition() {
-        visitedCoordinates.add(x + "," + y);
+        visitedCoordinates.add(new Position(x, y));
     }
-}
 
+    public void executeCommands(String commands) {
+        for (char command : commands.toCharArray()) {
+            switch (command) {
+                case 'F' -> moveForward();
+                case 'B' -> moveBackward();
+                case 'L' -> turnLeft();
+                case 'R' -> turnRight();
+                default -> throw new IllegalArgumentException("Unknown command: " + command);
+            }
+        }
+    }
+
+}
