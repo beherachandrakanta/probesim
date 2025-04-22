@@ -169,4 +169,21 @@ class ProbeTest {
         assertEquals(expected, probe.getVisitedCoordinates());
     }
 
+    @Test
+    void shouldPrintSummaryAfterCommands() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(0, 0, Direction.NORTH, grid);
+
+        probe.executeCommands("FFRFF");
+
+        String summary = probe.getSummary();
+
+        String expected = """
+        Final Position: (2, 2) facing EAST
+        Visited: [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]
+        """;
+
+        assertEquals(expected.trim(), summary.trim());
+    }
+
 }
