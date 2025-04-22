@@ -2,9 +2,9 @@ package com.ocean.probesim.core;
 
 public class Probe {
 
-    private final int x;
-    private final int y;
-    private final Direction direction;
+    private  int x;
+    private  int y;
+    private  Direction direction;
 
     public Probe(int x, int y, Direction direction) {
         if (x < 0 || y < 0) {
@@ -29,7 +29,13 @@ public class Probe {
     }
 
     public void moveForward() {
-        // stub
+        switch (direction) {
+            case NORTH -> y++;
+            case SOUTH -> y--;
+            case EAST  -> x++;
+            case WEST  -> x--;
+        }
+
     }
 
 }
