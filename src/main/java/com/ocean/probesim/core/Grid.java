@@ -1,10 +1,21 @@
 package com.ocean.probesim.core;
 
 public class Grid {
-    public Grid(int width, int height) {}
 
-    public int getWidth() { return 0; }
+    private final int width;
+    private final int height;
 
-    public int getHeight() { return 0; }
+    public Grid(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
 
