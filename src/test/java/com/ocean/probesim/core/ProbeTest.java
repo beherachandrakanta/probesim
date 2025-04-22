@@ -105,4 +105,42 @@ class ProbeTest {
         probe.turnRight();
         assertEquals(Direction.SOUTH, probe.getDirection());
     }
+
+    //Grid Boundary Checks
+    @Test
+    void shouldNotMoveForwardBeyondGridNorthEdge() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(2, 5, Direction.NORTH, grid);
+        probe.moveForward();
+        assertEquals(2, probe.getX());
+        assertEquals(5, probe.getY());
+    }
+
+    @Test
+    void shouldNotMoveBackwardBeyondGridSouthEdge() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(2, 0, Direction.NORTH, grid);
+        probe.moveBackward();
+        assertEquals(2, probe.getX());
+        assertEquals(0, probe.getY());
+    }
+
+    @Test
+    void shouldNotMoveForwardBeyondGridEastEdge() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(5, 2, Direction.EAST, grid);
+        probe.moveForward();
+        assertEquals(5, probe.getX());
+        assertEquals(2, probe.getY());
+    }
+
+    @Test
+    void shouldNotMoveForwardBeyondGridWestEdge() {
+        Grid grid = new Grid(5, 5);
+        Probe probe = new Probe(0, 2, Direction.WEST, grid);
+        probe.moveForward();
+        assertEquals(0, probe.getX());
+        assertEquals(2, probe.getY());
+    }
+
 }
