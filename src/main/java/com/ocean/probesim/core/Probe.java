@@ -27,4 +27,9 @@ public class Probe {
     public Direction getDirection() {
         return direction;
     }
+
+    public void moveForward() {
+        // stub
+    }
+
 }

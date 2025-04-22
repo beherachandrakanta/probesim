@@ -19,4 +19,12 @@ class ProbeTest {
         assertThrows(IllegalArgumentException.class, () -> new Probe(3, -5, Direction.SOUTH));
     }
 
+    @Test
+    void shouldMoveForwardWhenFacingNorth() {
+        Probe probe = new Probe(2, 2, Direction.NORTH);
+        probe.moveForward();
+        assertEquals(2, probe.getX());
+        assertEquals(3, probe.getY());
+    }
+
 }
