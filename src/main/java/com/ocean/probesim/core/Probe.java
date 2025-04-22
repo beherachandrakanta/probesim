@@ -41,12 +41,12 @@ public class Probe {
             case WEST  -> newX--;
         }
 
-        if (grid.isValidPosition(newX, newY)) {
+        if (grid.isValidPosition(newX, newY) && !grid.isObstacle(newX, newY)) {
             x = newX;
             y = newY;
         }
-
     }
+
     public void moveBackward() {
         int newX = x;
         int newY = y;
@@ -58,12 +58,11 @@ public class Probe {
             case WEST  -> newX++;
         }
 
-        if (grid.isValidPosition(newX, newY)) {
+        if (grid.isValidPosition(newX, newY) && !grid.isObstacle(newX, newY)) {
             x = newX;
             y = newY;
         }
     }
-
 
     public void turnLeft() {
         switch (direction) {
