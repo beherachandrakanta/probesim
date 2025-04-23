@@ -9,8 +9,8 @@ public class ProbeService {
     private Probe probe;
 
     public void initialize(InitRequest req) {
-        Grid grid = new Grid(req.gridWidth(), req.gridHeight());
-        probe = new Probe(req.startX(), req.startY(), Direction.valueOf(req.direction()), grid);
+        Grid grid = new Grid(req.getGridWidth(), req.getGridHeight());
+        probe = new Probe(req.getStartX(), req.getStartY(), Direction.valueOf(req.getDirection()), grid);
     }
 
     public void executeCommands(java.util.List<String> commands) {

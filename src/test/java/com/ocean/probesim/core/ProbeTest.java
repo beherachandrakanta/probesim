@@ -1,11 +1,15 @@
 package com.ocean.probesim.core;
 
+import com.ocean.probesim.dto.InitRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.http.RequestEntity.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class ProbeTest {
 
@@ -186,4 +190,14 @@ class ProbeTest {
         assertEquals(expected.trim(), summary.trim());
     }
 
+    @Test
+    void shouldInitializeProbe() throws Exception {
+        InitRequest request = new InitRequest(5, 5, 1, 1, "NORTH");
+        request.setObstacles(List.of("2,2", "3,3"));
+
+        mockMvc.perform(post("/probe/init")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk());
+    }
 }
